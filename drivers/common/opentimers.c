@@ -30,7 +30,7 @@ void opentimers_timer_callback(void);
 
 Initializes data structures and hardware timer.
  */
-void opentimers_init(){
+void opentimers_init(void){
    uint8_t i;
 
    // initialize local variables
@@ -196,7 +196,7 @@ This function maps the expiration event to possibly multiple timers, calls the
 corresponding callback(s), and restarts the hardware timer with the next timer
 to expire.
  */
-void opentimers_timer_callback() {
+void opentimers_timer_callback(void) {
    
    opentimer_id_t   id;
    PORT_TIMER_WIDTH min_timeout;

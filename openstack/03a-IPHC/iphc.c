@@ -48,7 +48,7 @@ void iphc_retrieveIPv6HopByHopHeader(
 
 //=========================== public ==========================================
 
-void      iphc_init() {
+void      iphc_init(void) {
 }
 
 // send from upper layer: I need to add 6LoWPAN header

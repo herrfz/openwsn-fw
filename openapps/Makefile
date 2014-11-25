@@ -1,4 +1,4 @@
-MODULE = openwsn
+#MODULE = openwsn
 
 DIRS += $(CURDIR)/c6t \
         $(CURDIR)/uecho \

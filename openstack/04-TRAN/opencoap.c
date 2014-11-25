@@ -24,7 +24,7 @@ opencoap_vars_t opencoap_vars;
 /**
 \brief Initialize this module.
 */
-void opencoap_init() {
+void opencoap_init(void) {
    // initialize the resource linked list
    opencoap_vars.resources     = NULL;
    

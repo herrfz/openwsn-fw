@@ -18,18 +18,18 @@ bool tohlone_check4chars(uint8_t c1[4], uint8_t c2[4]);
 
 //=========================== public ==========================================
 
-void tohlone_init() {
+void tohlone_init(void) {
    tohlone_vars.httpChunk = 0;
    tohlone_vars.getRequest[0] = '/';
    tohlone_vars.getRequest[1] = ' ';
    tohlone_webpages_init();
 }
 
-bool tohlone_shouldIlisten() {
+bool tohlone_shouldIlisten(void) {
    return TRUE;
 }
 
-void tohlone_sendpkt() {
+void tohlone_sendpkt(void) {
    uint8_t buffer[TCP_DEFAULT_WINDOW_SIZE];
    uint8_t buffer_len;
   
@@ -106,7 +106,7 @@ void tohlone_sendDone(OpenQueueEntry_t* msg, owerror_t error) {
 void tohlone_connectDone(owerror_t error) {
 }
 
-bool tohlone_debugPrint() {
+bool tohlone_debugPrint(void) {
    return FALSE;
 }
 

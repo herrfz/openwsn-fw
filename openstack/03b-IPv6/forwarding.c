@@ -45,7 +45,7 @@ void forwarding_createFlowLabel(uint32_t* flow_label,uint8_t flags);
 /**
 \brief Initialize this module.
 */
-void forwarding_init() {
+void forwarding_init(void) {
 }
 
 /**

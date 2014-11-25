@@ -24,7 +24,7 @@ void opentcp_timer_cb(opentimer_id_t id);
 
 //=========================== public ==========================================
 
-void opentcp_init() {
+void opentcp_init(void) {
    // reset local variables
    memset(&tcp_vars,0,sizeof(tcp_vars_t));   
    // reset state machine
@@ -567,7 +567,7 @@ void opentcp_receive(OpenQueueEntry_t* msg) {
    }
 }
 
-owerror_t opentcp_close() {    //[command] teardown
+owerror_t opentcp_close(void) {    //[command] teardown
    OpenQueueEntry_t* tempPkt;
    if (  tcp_vars.state==TCP_STATE_ALMOST_CLOSE_WAIT ||
          tcp_vars.state==TCP_STATE_CLOSE_WAIT        ||
@@ -666,7 +666,7 @@ bool containsControlBits(OpenQueueEntry_t* msg, uint8_t ack, uint8_t rst, uint8_
    return return_value;
 }
 
-void opentcp_reset() {
+void opentcp_reset(void) {
    tcp_change_state(TCP_STATE_CLOSED);
    tcp_vars.mySeqNum            = TCP_INITIAL_SEQNUM; 
    tcp_vars.hisNextSeqNum       = 0;

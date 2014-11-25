@@ -15,7 +15,7 @@
 
 //=========================== public ==========================================
 
-void openudp_init() {
+void openudp_init(void) {
 }
 
 owerror_t openudp_send(OpenQueueEntry_t* msg) {
@@ -118,7 +118,7 @@ void openudp_receive(OpenQueueEntry_t* msg) {
    }
 }
 
-bool openudp_debugPrint() {
+bool openudp_debugPrint(void) {
    return FALSE;
 }
 

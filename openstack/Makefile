@@ -1,4 +1,4 @@
-MODULE = openwsn
+#MODULE = openwsn
 
 DIRS +=02a-MAClow
 DIRS +=02b-MAChigh

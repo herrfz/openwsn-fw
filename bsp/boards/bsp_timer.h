@@ -13,7 +13,7 @@
 */
 
 #include "stdint.h"
-#include "board.h"
+#include "board_ow.h"
 
 //=========================== define ==========================================
 

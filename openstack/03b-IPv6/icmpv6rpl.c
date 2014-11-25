@@ -31,7 +31,7 @@ void sendDAO(void);
 /**
 \brief Initialize this module.
 */
-void icmpv6rpl_init() {
+void icmpv6rpl_init(void) {
    uint8_t         dodagid[16];
    
    // retrieve my prefix and EUI64
@@ -145,7 +145,7 @@ void  icmpv6rpl_writeDODAGid(uint8_t* dodagid) {
    icmpv6rpl_vars.fDodagidWritten = 1;
 }
 
-uint8_t icmpv6rpl_getRPLIntanceID(){
+uint8_t icmpv6rpl_getRPLIntanceID(void){
    return icmpv6rpl_vars.dao.rplinstanceId;
 }
 
@@ -257,7 +257,7 @@ void icmpv6rpl_timer_DIO_cb(opentimer_id_t id) {
 
 \note This function is executed in task context, called by the scheduler.
 */
-void icmpv6rpl_timer_DIO_task() {
+void icmpv6rpl_timer_DIO_task(void) {
    
    // update the delayDIO
    icmpv6rpl_vars.delayDIO = (icmpv6rpl_vars.delayDIO+1)%5;
@@ -283,7 +283,7 @@ void icmpv6rpl_timer_DIO_task() {
 /**
 \brief Prepare and a send a RPL DIO.
 */
-void sendDIO() {
+void sendDIO(void) {
    OpenQueueEntry_t*    msg;
    
    // stop if I'm not sync'ed
@@ -378,7 +378,7 @@ void icmpv6rpl_timer_DAO_cb(opentimer_id_t id) {
 
 \note This function is executed in task context, called by the scheduler.
 */
-void icmpv6rpl_timer_DAO_task() {
+void icmpv6rpl_timer_DAO_task(void) {
    
    // update the delayDAO
    icmpv6rpl_vars.delayDAO = (icmpv6rpl_vars.delayDAO+1)%5;
@@ -404,7 +404,7 @@ void icmpv6rpl_timer_DAO_task() {
 /**
 \brief Prepare and a send a RPL DAO.
 */
-void sendDAO() {
+void sendDAO(void) {
    OpenQueueEntry_t*    msg;                // pointer to DAO messages
    uint8_t              nbrIdx;             // running neighbor index
    uint8_t              numTransitParents,numTargetParents;  // the number of parents indicated in transit option

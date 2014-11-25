@@ -6,7 +6,7 @@
 
 #include "opendefs.h"
 #include "scheduler.h"
-#include "board.h"
+#include "board_ow.h"
 #include "debugpins.h"
 #include "leds.h"
 
@@ -21,7 +21,7 @@ void consumeTask(uint8_t taskId);
 
 //=========================== public ==========================================
 
-void scheduler_init() {   
+void scheduler_init(void) {   
    
    // initialization module variables
    memset(&scheduler_vars,0,sizeof(scheduler_vars_t));
@@ -31,7 +31,7 @@ void scheduler_init() {
    SCHEDULER_ENABLE_INTERRUPT();
 }
 
-void scheduler_start() {
+void scheduler_start(void) {
    taskList_item_t* pThisTask;
    while (1) {
       while(scheduler_vars.task_list!=NULL) {

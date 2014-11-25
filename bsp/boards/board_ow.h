@@ -28,7 +28,7 @@ typedef enum {
 
 //=========================== prototypes ======================================
 
-void board_init(void);
+void board_init_ow(void);
 void board_sleep(void);
 void board_reset(void);
 

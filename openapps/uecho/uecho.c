@@ -11,7 +11,7 @@
 
 //=========================== public ==========================================
 
-void uecho_init() {
+void uecho_init(void) {
 }
 
 void uecho_receive(OpenQueueEntry_t* request) {
@@ -56,7 +56,7 @@ void uecho_sendDone(OpenQueueEntry_t* msg, owerror_t error) {
    openqueue_freePacketBuffer(msg);
 }
 
-bool uecho_debugPrint() {
+bool uecho_debugPrint(void) {
    return FALSE;
 }
 

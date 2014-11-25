@@ -10,10 +10,10 @@
 
 //=========================== public ==========================================
 
-void techo_init() {
+void techo_init(void) {
 }
 
-bool techo_shouldIlisten() {
+bool techo_shouldIlisten(void) {
    return TRUE;
 }
 
@@ -46,7 +46,7 @@ void techo_sendDone(OpenQueueEntry_t* msg, owerror_t error) {
 void techo_connectDone(owerror_t error) {
 }
 
-bool techo_debugPrint() {
+bool techo_debugPrint(void) {
    return FALSE;
 }
 

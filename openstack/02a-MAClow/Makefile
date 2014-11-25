@@ -1,3 +1,3 @@
-MODULE = openwsn
+#MODULE = openwsn
 
 include $(RIOTBASE)/Makefile.base

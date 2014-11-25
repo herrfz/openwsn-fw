@@ -31,7 +31,7 @@ bool isThisRowMatching(
 /**
 \brief Initializes this module.
 */
-void neighbors_init() {
+void neighbors_init(void) {
    
    // clear module variables
    memset(&neighbors_vars,0,sizeof(neighbors_vars_t));
@@ -51,7 +51,7 @@ void neighbors_init() {
 
 \returns This mote's current DAG rank.
 */
-dagrank_t neighbors_getMyDAGrank() {
+dagrank_t neighbors_getMyDAGrank(void) {
    return neighbors_vars.myDAGrank;
 }
 
@@ -60,7 +60,7 @@ dagrank_t neighbors_getMyDAGrank() {
 
 \returns The number of neighbors this mote's currently knows of.
 */
-uint8_t neighbors_getNumNeighbors() {
+uint8_t neighbors_getNumNeighbors(void) {
    uint8_t i;
    uint8_t returnVal;
    
@@ -494,7 +494,7 @@ routing decisions to change. Examples are:
   very low DAGrank, I may want to change by routing parent.
 - I became a DAGroot, so my DAGrank should be 0.
 */
-void neighbors_updateMyDAGrankAndNeighborPreference() {
+void neighbors_updateMyDAGrankAndNeighborPreference(void) {
    uint8_t   i;
    uint16_t  rankIncrease;
    uint32_t  tentativeDAGrank; // 32-bit since is used to sum
@@ -550,7 +550,7 @@ void neighbors_updateMyDAGrankAndNeighborPreference() {
 
 //===== maintenance
 
-void  neighbors_removeOld() {
+void  neighbors_removeOld(void) {
    uint8_t    i;
    uint16_t   timeSinceHeard;
    
@@ -574,7 +574,7 @@ status information about several modules in the OpenWSN stack.
 
 \returns TRUE if this function printed something, FALSE otherwise.
 */
-bool debugPrint_neighbors() {
+bool debugPrint_neighbors(void) {
    debugNeighborEntry_t temp;
    neighbors_vars.debugRow=(neighbors_vars.debugRow+1)%MAXNUMNEIGHBORS;
    temp.row=neighbors_vars.debugRow;
