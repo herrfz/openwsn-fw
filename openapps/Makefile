@@ -2,7 +2,11 @@
 
 DIRS += $(CURDIR)/c6t \
         $(CURDIR)/uecho \
-        $(CURDIR)/techo
+        $(CURDIR)/techo \
+        $(CURDIR)/cinfo \
+        $(CURDIR)/cleds \
+        $(CURDIR)/cstorm \
+        $(CURDIR)/cwellknown
 
 INCLUDES += -I$(CURDIR)/c6t \
 			-I$(CURDIR)/techo \

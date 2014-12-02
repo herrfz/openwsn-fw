@@ -13,18 +13,19 @@ idmanager_vars_t idmanager_vars;
 //=========================== prototypes ======================================
 
 //=========================== public ==========================================
-
-void idmanager_init(void) {
+// #define DAGROOT
+void idmanager_init(uint8_t role) {
    
    // reset local variables
    memset(&idmanager_vars, 0, sizeof(idmanager_vars_t));
    
    // isDAGroot
-#ifdef DAGROOT
-   idmanager_vars.isDAGroot            = TRUE;
-#else
-   idmanager_vars.isDAGroot            = FALSE;
-#endif
+// #ifdef DAGROOT
+//    idmanager_vars.isDAGroot            = TRUE;
+// #else
+//    idmanager_vars.isDAGroot            = FALSE;
+// #endif
+   idmanager_vars.isDAGroot            = role;
    
    // myPANID
    idmanager_vars.myPANID.type         = ADDR_PANID;

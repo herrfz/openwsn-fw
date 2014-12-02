@@ -1,0 +1,29 @@
+diff a/openstack/openstack.c b/openstack/openstack.c	(rejected hunks)
+@@ -36,6 +36,9 @@
+ //===== applications
+ #include "openapps.h"
+ 
++#define ENABLE_DEBUG (0)
++#include "debug.h"
++
+ //=========================== variables =======================================
+ 
+ //=========================== prototypes ======================================
+@@ -44,14 +47,15 @@
+ 
+ //=========================== private =========================================
+ 
+-void openstack_init(void) {
++void openstack_init(uint8_t role) {
++   DEBUG("%s\n",__PRETTY_FUNCTION__);
+    
+    //===== drivers
+    openserial_init();
+    
+    //===== stack
+    //-- cross-layer
+-   idmanager_init();    // call first since initializes EUI64 and isDAGroot
++   idmanager_init(role);    // call first since initializes EUI64 and isDAGroot
+    openqueue_init();
+    openrandom_init();
+    opentimers_init();

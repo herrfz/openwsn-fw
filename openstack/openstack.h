@@ -17,6 +17,6 @@
 
 //=========================== prototypes ======================================
 
-void openstack_init(void);
+void openstack_init(uint8_t role);
 
 #endif

@@ -24,16 +24,17 @@ void leds_error_toggle(void)
 }
 uint8_t leds_error_isOn(void)
 {
-  uint8_t bitstatus = 0x00;
-  if ((LED_RED_PORT->ODR & LED_RED_PIN) != (uint32_t)0)
-  {
-    bitstatus = 0x00;
-  }
-  else
-  {
-    bitstatus = 0x01;
-  }
-  return bitstatus;
+  // uint8_t bitstatus = 0x00;
+  // if ((LED_RED_PORT->ODR & LED_RED_PIN) != (uint32_t)0)
+  // {
+  //   bitstatus = 0x00;
+  // }
+  // else
+  // {
+  //   bitstatus = 0x01;
+  // }
+  // return bitstatus;
+  return true;
 }
 void leds_error_blink(void) {}
 
@@ -52,16 +53,17 @@ void leds_sync_toggle(void)
 }
 uint8_t leds_sync_isOn(void)
 {
-  uint8_t bitstatus = 0x00;
-  if ((LED_GREEN_PORT->ODR & LED_GREEN_PIN) != (uint32_t)0)
-  {
-    bitstatus = 0x00;
-  }
-  else
-  {
-    bitstatus = 0x01;
-  }
-  return bitstatus;
+  // uint8_t bitstatus = 0x00;
+  // if ((LED_GREEN_PORT->ODR & LED_GREEN_PIN) != (uint32_t)0)
+  // {
+  //   bitstatus = 0x00;
+  // }
+  // else
+  // {
+  //   bitstatus = 0x01;
+  // }
+  // return bitstatus;
+  return true;
 }
 
 /* orange */
@@ -79,16 +81,17 @@ void leds_radio_toggle(void)
 }
 uint8_t leds_radio_isOn(void)
 {
-  uint8_t bitstatus = 0x00;
-  if ((LED_ORANGE_PORT->ODR & LED_ORANGE_PIN) != (uint32_t)0)
-  {
-    bitstatus = 0x00;
-  }
-  else
-  {
-    bitstatus = 0x01;
-  }
-  return bitstatus;
+  // uint8_t bitstatus = 0x00;
+  // if ((LED_ORANGE_PORT->ODR & LED_ORANGE_PIN) != (uint32_t)0)
+  // {
+  //   bitstatus = 0x00;
+  // }
+  // else
+  // {
+  //   bitstatus = 0x01;
+  // }
+  // return bitstatus;
+  return true;
 }
 
 /* yellow */

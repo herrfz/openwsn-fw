@@ -210,7 +210,7 @@ void openserial_board_reset_cb(opentimer_id_t id) {
 }
 
 uint8_t openserial_getNumDataBytes(void) {
-   uint8_t inputBufFill;
+   uint8_t inputBufFill = 0;
    // INTERRUPT_DECLARATION();
    
    // DISABLE_INTERRUPTS();
@@ -221,7 +221,7 @@ uint8_t openserial_getNumDataBytes(void) {
 }
 
 uint8_t openserial_getInputBuffer(uint8_t* bufferToWrite, uint8_t maxNumBytes) {
-   uint8_t numBytesWritten;
+   uint8_t numBytesWritten = 0;
    // uint8_t inputBufFill;
    // INTERRUPT_DECLARATION();
    

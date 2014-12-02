@@ -10,6 +10,11 @@
 #include "debugpins.h"
 #include "leds.h"
 
+#include "thread.h"
+
+#define ENABLE_DEBUG (0)
+#include "debug.h"
+
 //=========================== variables =======================================
 
 scheduler_vars_t scheduler_vars;
@@ -22,7 +27,6 @@ void consumeTask(uint8_t taskId);
 //=========================== public ==========================================
 
 void scheduler_init(void) {   
-   
    // initialization module variables
    memset(&scheduler_vars,0,sizeof(scheduler_vars_t));
    memset(&scheduler_dbg,0,sizeof(scheduler_dbg_t));
@@ -53,16 +57,18 @@ void scheduler_start(void) {
          scheduler_dbg.numTasksCur--;
       }
       debugpins_task_clr();
-      board_sleep();
+      // board_sleep();
+      thread_yield();
       debugpins_task_set();                      // IAR should halt here if nothing to do
    }
 }
 
- void scheduler_push_task(task_cbt cb, task_prio_t prio) {
+void scheduler_push_task(task_cbt cb, task_prio_t prio) {
    taskList_item_t*  taskContainer;
    taskList_item_t** taskListWalker;
    INTERRUPT_DECLARATION();
    
+   DEBUG("owsn scheduler: push back task %p.\n", cb);
    DISABLE_INTERRUPTS();
    
    // find an empty task container

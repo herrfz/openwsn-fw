@@ -15,4 +15,6 @@ INCLUDES += -I$(CURDIR)/../drivers/common \
 			-I$(CURDIR)/04-TRAN \
 			-I$(CURDIR)/cross-layers
 
+# CFLAGS += -DDAGROOT
+
 include $(RIOTBASE)/Makefile.base

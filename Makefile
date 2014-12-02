@@ -5,7 +5,8 @@ DIRS += $(OPENWSN_ROOT)/projects/common/03oos_openwsn \
 		$(OPENWSN_ROOT)/openstack \
 		$(OPENWSN_ROOT)/openapps \
 		$(OPENWSN_ROOT)/kernel/openos \
-		$(OPENWSN_ROOT)/drivers/common
+		$(OPENWSN_ROOT)/drivers/common \
+		$(OPENWSN_ROOT)/bsp/boards/riot-adaption
 
 INCLUDES += -I$(OPENWSN_ROOT)/kernel \
 			-I$(OPENWSN_ROOT)/inc \

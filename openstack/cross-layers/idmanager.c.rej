@@ -1,0 +1,45 @@
+diff a/openstack/cross-layers/idmanager.c b/openstack/cross-layers/idmanager.c	(rejected hunks)
+@@ -9,24 +9,25 @@
+ 
+ idmanager_vars_t idmanager_vars;
+ 
+-//=========================== prototypes ======================================
+-
+-//=========================== public ==========================================
+-
+-void idmanager_init(void) {
+-   
+-   // reset local variables
+-   memset(&idmanager_vars, 0, sizeof(idmanager_vars_t));
+-   
+-   // isDAGroot
+-#ifdef DAGROOT
+-   idmanager_vars.isDAGroot            = TRUE;
+-#else
+-   idmanager_vars.isDAGroot            = FALSE;
+-#endif
+-   
+-   // myPANID
+-   idmanager_vars.myPANID.type         = ADDR_PANID;
++//=========================== prototypes ======================================
++
++//=========================== public ==========================================
++// #define DAGROOT
++void idmanager_init(uint8_t role) {
++
++   // reset local variables
++   memset(&idmanager_vars, 0, sizeof(idmanager_vars_t));
++
++   // isDAGroot
++// #ifdef DAGROOT
++//    idmanager_vars.isDAGroot            = TRUE;
++// #else
++//    idmanager_vars.isDAGroot            = FALSE;
++// #endif
++   idmanager_vars.isDAGroot            = role;
++
++   // myPANID
++   idmanager_vars.myPANID.type         = ADDR_PANID;
+    idmanager_vars.myPANID.panid[0]     = 0xca;
+    idmanager_vars.myPANID.panid[1]     = 0xfe;
+    

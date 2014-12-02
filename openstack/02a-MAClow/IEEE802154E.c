@@ -16,6 +16,9 @@
 #include "adaptive_sync.h"
 #include "processIE.h"
 
+#define ENABLE_DEBUG (0)
+#include "debug.h"
+
 //=========================== variables =======================================
 
 ieee154e_vars_t    ieee154e_vars;
@@ -1872,9 +1875,11 @@ void changeIsSync(bool newIsSync) {
    ieee154e_vars.isSync = newIsSync;
    
    if (ieee154e_vars.isSync==TRUE) {
+      DEBUG("Synced.\n");
       leds_sync_on();
       resetStats();
    } else {
+      DEBUG("Unsynced.\n");
       leds_sync_off();
       schedule_resetBackoff();
    }

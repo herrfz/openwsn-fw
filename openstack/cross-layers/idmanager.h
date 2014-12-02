@@ -42,7 +42,7 @@ typedef struct {
 
 //=========================== prototypes ======================================
 
-void         idmanager_init(void);
+void         idmanager_init(uint8_t role);
 bool         idmanager_getIsDAGroot(void);
 void         idmanager_setIsDAGroot(bool newRole);
 open_addr_t* idmanager_getMyID(uint8_t type);

@@ -1,4 +1,4 @@
-#include "uart_ow.h"
+#include "uart.h"
 #include "leds.h"
 #include "periph/uart.h"
 
@@ -22,7 +22,7 @@ volatile uart_vars_t uart_vars;
 void uart_init_ow(void)
 {
   // reset local variables
-  memset(&uart_vars,0,sizeof(uart_vars_t));
+  memset((void*)&uart_vars,0,sizeof(uart_vars_t));
 
   //when this value is 0, we are send the first data
   uart_vars.startOrend = 0;
@@ -76,9 +76,9 @@ void uart_writeByte(uint8_t byteToWrite)
 
 uint8_t uart_readByte(void)
 {
-  // uint16_t temp;
+  uint16_t temp = 0;
   // temp = USART_ReceiveData(USART1);
-  // return (uint8_t)temp;
+  return (uint8_t)temp;
 }
 
 //=========================== interrupt handlers ==============================

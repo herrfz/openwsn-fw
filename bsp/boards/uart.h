@@ -31,7 +31,7 @@ typedef void (*uart_rx_cbt)(void);
 
 //=========================== prototypes ======================================
 
-void    uart_init(void);
+void    uart_init_ow(void);
 void    uart_setCallbacks(uart_tx_cbt txCb, uart_rx_cbt rxCb);
 void    uart_enableInterrupts(void);
 void    uart_disableInterrupts(void);
