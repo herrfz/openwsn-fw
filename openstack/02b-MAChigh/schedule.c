@@ -58,7 +58,7 @@ void schedule_init(void) {
 /**
 \brief Starting the DAGroot schedule propagation.
 */
-void schedule_startDAGroot() {
+void schedule_startDAGroot(void) {
    slotOffset_t    start_slotOffset;
    slotOffset_t    running_slotOffset;
    open_addr_t     temp_neighbor;
@@ -247,7 +247,7 @@ void  schedule_getSlotInfo(
 
 \param[out] maximum number of active slots
 */
-uint16_t  schedule_getMaxActiveSlots() {
+uint16_t  schedule_getMaxActiveSlots(void) {
    return schedule_vars.maxActiveSlots;
 }
 
@@ -446,7 +446,7 @@ bool schedule_isSlotOffsetAvailable(uint16_t slotOffset){
    return TRUE;
 }
 
-scheduleEntry_t* schedule_statistic_poorLinkQuality(){
+scheduleEntry_t* schedule_statistic_poorLinkQuality(void){
    scheduleEntry_t* scheduleWalker;
    
    INTERRUPT_DECLARATION();

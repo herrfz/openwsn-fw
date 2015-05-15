@@ -1,5 +1,5 @@
-#ifndef __BOARD_H
-#define __BOARD_H
+#ifndef __BOARD_OW_H
+#define __BOARD_OW_H
 
 /**
 \addtogroup BSP

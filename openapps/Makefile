@@ -6,7 +6,8 @@ DIRS += $(CURDIR)/c6t \
         $(CURDIR)/cinfo \
         $(CURDIR)/cleds \
         $(CURDIR)/cstorm \
-        $(CURDIR)/cwellknown
+        $(CURDIR)/cwellknown \
+        $(CURDIR)/rrt
 
 INCLUDES += -I$(CURDIR)/c6t \
 			-I$(CURDIR)/techo \
@@ -15,6 +16,7 @@ INCLUDES += -I$(CURDIR)/c6t \
 			-I$(CURDIR)/cleds \
 			-I$(CURDIR)/cstorm \
 			-I$(CURDIR)/cwellknown \
+			-I$(CURDIR)/rrt\
 			-I$(OPENWSN_ROOT)/openstack/04-TRAN \
 			-I$(OPENWSN_ROOT)/drivers/common \
 			-I$(OPENWSN_ROOT)/openstack/02a-MAClow \

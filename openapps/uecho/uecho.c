@@ -55,10 +55,10 @@ void uecho_receive(OpenQueueEntry_t* request) {
       if ((openudp_send(reply))==E_FAIL) {
          openqueue_freePacketBuffer(reply);
       } else {
-      openqueue_freePacketBuffer(request);
-      expect_echo = FALSE;
+         openqueue_freePacketBuffer(request);
+         expect_echo = FALSE;
+      }
    }
-   
 }
 
 void uecho_sendDone(OpenQueueEntry_t* msg, owerror_t error) {

@@ -9,4 +9,8 @@
 
 void openwsn_start_thread(int argc, char **argv);
 
+//=========================== define ==========================================
+
+#define PRIORITY_OPENWSN            PRIORITY_MAIN-1
+
 #endif
