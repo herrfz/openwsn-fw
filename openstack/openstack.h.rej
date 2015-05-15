@@ -1,9 +1,0 @@
-diff a/openstack/openstack.h b/openstack/openstack.h	(rejected hunks)
-@@ -17,6 +17,6 @@
- 
- //=========================== prototypes ======================================
- 
--void openstack_init(void);
-+void openstack_init(uint8_t role);
- 
- #endif
