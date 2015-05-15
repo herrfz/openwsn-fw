@@ -15,7 +15,7 @@
 */
 
 #include "stdint.h"
-#include "board.h"
+#include "board_ow.h"
 
 //=========================== define ==========================================
 #define SCTIMER_TICS_MS 33

@@ -7,7 +7,7 @@
  */
 
 #include "opendefs.h"
-#include "bsp_timer.h"
+#include "board_ow.h"
 #include "radiotimer.h"
 #include "sctimer.h"
 #include "debugpins.h"
@@ -16,7 +16,7 @@
 
 #define ABSTIMER_GUARD_TICKS 2
 
-typedef void (*abstimer_cbt)();
+typedef void (*abstimer_cbt)(void);
 
 //=========================== variables =======================================
 
@@ -63,11 +63,11 @@ abstimer_vars_t abstimer_vars;
 
 //=========================== prototypes ======================================
 
-void     abstimer_init();
-void     abstimer_reschedule();
-void     sctimer_init();
-void     sctimer_schedule(uint16_t val);
-uint16_t sctimer_getValue();
+void     abstimer_init(void);
+void     abstimer_reschedule(void);
+void     sctimer_init(void);
+void     sctimer_schedule(PORT_TIMER_WIDTH val);
+PORT_TIMER_WIDTH sctimer_getValue(void);
 
 //=========================== public ==========================================
 
@@ -145,7 +145,7 @@ uint16_t sctimer_getValue();
 //}
 
 //===== from radiotimer
-void radiotimer_init() {
+void radiotimer_init(void) {
    abstimer_init();
 }
 
@@ -157,7 +157,7 @@ void radiotimer_setCompareCb(radiotimer_compare_cbt cb) {
    abstimer_vars.callback[ABSTIMER_SRC_RADIOTIMER_COMPARE]      = cb;
 }
 
-void radiotimer_start(uint16_t period) {
+void radiotimer_start(PORT_RADIOTIMER_WIDTH period) {
    INTERRUPT_DECLARATION();
    DISABLE_INTERRUPTS();
    // remember the period
@@ -178,7 +178,7 @@ void radiotimer_start(uint16_t period) {
 }
 
 // this is the elapsed time in this period (now - previous val)  
-PORT_TIMER_WIDTH radiotimer_getValue() {
+PORT_TIMER_WIDTH radiotimer_getValue(void) {
    PORT_TIMER_WIDTH x;
    INTERRUPT_DECLARATION();
    DISABLE_INTERRUPTS();
@@ -187,7 +187,7 @@ PORT_TIMER_WIDTH radiotimer_getValue() {
    return x;
 }
 
-void radiotimer_setPeriod(uint16_t period) {
+void radiotimer_setPeriod(PORT_RADIOTIMER_WIDTH period) {
    INTERRUPT_DECLARATION();
    DISABLE_INTERRUPTS();
    //why??
@@ -199,11 +199,11 @@ void radiotimer_setPeriod(uint16_t period) {
    ENABLE_INTERRUPTS();  
 }
 
-uint16_t radiotimer_getPeriod() {
+PORT_RADIOTIMER_WIDTH radiotimer_getPeriod(void) {
    return abstimer_vars.radiotimer_period; 
 }
 
-void radiotimer_schedule(uint16_t offset) {
+void radiotimer_schedule(PORT_RADIOTIMER_WIDTH offset) {
 
    INTERRUPT_DECLARATION();
    DISABLE_INTERRUPTS();
@@ -223,7 +223,7 @@ void radiotimer_schedule(uint16_t offset) {
    ENABLE_INTERRUPTS();
 }
 
-void radiotimer_cancel() {
+void radiotimer_cancel(void) {
    INTERRUPT_DECLARATION();
    DISABLE_INTERRUPTS();
 
@@ -234,14 +234,14 @@ void radiotimer_cancel() {
 }
 
 // the current value as we do not have a capture register.
-uint16_t radiotimer_getCapturedTime() {
+PORT_RADIOTIMER_WIDTH radiotimer_getCapturedTime(void) {
    return radiotimer_getValue();
 }
 
 //=========================== private =========================================
 
 //===== admin
-void abstimer_init() {
+void abstimer_init(void) {
 
    // only initialize once
    if (abstimer_vars.initialized==FALSE) {
@@ -252,7 +252,7 @@ void abstimer_init() {
       sctimer_init();
 
       // set callback in case the hardware timer needs it. IAR based projects use pragma to bind it.
-      sctimer_setCb(radiotimer_isr);
+      sctimer_setCb((sctimer_cbt)radiotimer_isr);
 
       // declare as initialized
       abstimer_vars.initialized = TRUE;
@@ -261,7 +261,7 @@ void abstimer_init() {
 
 //===== rescheduling
 
-void abstimer_reschedule() {
+void abstimer_reschedule(void) {
    // the goal here is to take the next compare time,
    // i.e. the one with the smallest difference to currentTime which is armed
 
@@ -305,7 +305,7 @@ void abstimer_reschedule() {
 //   while(1);
 //}
 
-kick_scheduler_t radiotimer_isr() {
+void radiotimer_isr(void) {
    uint8_t         i;                       // iterator
    uint16_t        now,timeSpent;
    uint16_t        calc;
@@ -483,5 +483,5 @@ kick_scheduler_t radiotimer_isr() {
    sctimer_clearISR();
         debugpins_frame_clr();
    // kick the OS
-   return KICK_SCHEDULER;
+   // return KICK_SCHEDULER;
 }

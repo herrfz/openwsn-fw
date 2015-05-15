@@ -59,6 +59,7 @@ void* openwsn_start(void *arg) {
   DEBUG("%s\n",__PRETTY_FUNCTION__);
   leds_all_off();
   board_init_ow();
+  CRYPTO_ENGINE.init();
   scheduler_init();
   openstack_init(*((uint8_t*)arg));
   puts("DONE");
