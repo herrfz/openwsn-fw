@@ -7,7 +7,7 @@
 #ifndef __openwsn_H
 #define __openwsn_H
 
-void openwsn_start_thread(int argc, char **argv);
+int openwsn_start_thread(int argc, char **argv);
 
 //=========================== define ==========================================
 
