@@ -7,6 +7,7 @@
 // applications
 #include "opencoap.h"
 #include "uecho.h"
+#include "uinject.h"
 #include "rrt.h"
 
 //=========================== variables =======================================
@@ -15,7 +16,7 @@
 
 //=========================== public ==========================================
 
-void openudp_init(void) {
+void openudp_init() {
 }
 
 owerror_t openudp_send(OpenQueueEntry_t* msg) {
@@ -39,6 +40,9 @@ void openudp_sendDone(OpenQueueEntry_t* msg, owerror_t error) {
          break;
       case WKP_UDP_ECHO:
          uecho_sendDone(msg,error);
+         break;
+      case WKP_UDP_INJECT:
+         uinject_sendDone(msg,error);
          break;
       case WKP_UDP_RINGMASTER:
 	 //udpprint_sendDone(msg, error);
@@ -110,6 +114,9 @@ void openudp_receive(OpenQueueEntry_t* msg) {
       case WKP_UDP_ECHO:
          uecho_receive(msg);
          break;
+      case WKP_UDP_INJECT:
+         uinject_receive(msg);
+         break;
       default:
          openserial_printError(COMPONENT_OPENUDP,ERR_UNSUPPORTED_PORT_NUMBER,
                                (errorparameter_t)msg->l4_destination_port,
@@ -118,7 +125,7 @@ void openudp_receive(OpenQueueEntry_t* msg) {
    }
 }
 
-bool openudp_debugPrint(void) {
+bool openudp_debugPrint() {
    return FALSE;
 }
 
