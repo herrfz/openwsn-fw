@@ -2,6 +2,7 @@
 
 DIRS += $(CURDIR)/c6t \
         $(CURDIR)/uecho \
+        $(CURDIR)/uinject \
         $(CURDIR)/techo \
         $(CURDIR)/cinfo \
         $(CURDIR)/cleds \
@@ -12,6 +13,7 @@ DIRS += $(CURDIR)/c6t \
 INCLUDES += -I$(CURDIR)/c6t \
 			-I$(CURDIR)/techo \
 			-I$(CURDIR)/uecho \
+			-I$(CURDIR)/uinject \
 			-I$(CURDIR)/cinfo \
 			-I$(CURDIR)/cleds \
 			-I$(CURDIR)/cstorm \
