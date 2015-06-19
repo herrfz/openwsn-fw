@@ -19,7 +19,7 @@ void openqueue_reset_entry(OpenQueueEntry_t* entry);
 /**
 \brief Initialize this module.
 */
-void openqueue_init(void) {
+void openqueue_init() {
    uint8_t i;
    for (i=0;i<QUEUELENGTH;i++){
       openqueue_reset_entry(&(openqueue_vars.queue[i]));
@@ -34,7 +34,7 @@ status information about several modules in the OpenWSN stack.
 
 \returns TRUE if this function printed something, FALSE otherwise.
 */
-bool debugPrint_queue(void) {
+bool debugPrint_queue() {
    debugOpenQueueEntry_t output[QUEUELENGTH];
    uint8_t i;
    for (i=0;i<QUEUELENGTH;i++) {
@@ -155,7 +155,7 @@ void openqueue_removeAllOwnedBy(uint8_t owner) {
 
 //======= called by RES
 
-OpenQueueEntry_t* openqueue_sixtopGetSentPacket(void) {
+OpenQueueEntry_t* openqueue_sixtopGetSentPacket() {
    uint8_t i;
    INTERRUPT_DECLARATION();
    DISABLE_INTERRUPTS();
@@ -170,7 +170,7 @@ OpenQueueEntry_t* openqueue_sixtopGetSentPacket(void) {
    return NULL;
 }
 
-OpenQueueEntry_t* openqueue_sixtopGetReceivedPacket(void) {
+OpenQueueEntry_t* openqueue_sixtopGetReceivedPacket() {
    uint8_t i;
    INTERRUPT_DECLARATION();
    DISABLE_INTERRUPTS();
@@ -221,7 +221,7 @@ OpenQueueEntry_t* openqueue_macGetDataPacket(open_addr_t* toNeighbor) {
    return NULL;
 }
 
-OpenQueueEntry_t* openqueue_macGetEBPacket(void) {
+OpenQueueEntry_t* openqueue_macGetEBPacket() {
    uint8_t i;
    INTERRUPT_DECLARATION();
    DISABLE_INTERRUPTS();
@@ -255,4 +255,5 @@ void openqueue_reset_entry(OpenQueueEntry_t* entry) {
    entry->l2_frameType                 = IEEE154_TYPE_UNDEFINED;
    entry->l2_retriesLeft               = 0;
    entry->l2_IEListPresent             = 0;
+   entry->l2_payloadIEpresent          = 0;
 }

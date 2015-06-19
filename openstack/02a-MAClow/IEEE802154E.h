@@ -71,6 +71,8 @@
 #define IEEE802154E_MLME_SLOTFRAME_LINK_IE_SUBID_SHIFT     1
 #define IEEE802154E_MLME_TIMESLOT_IE_SUBID                 0x1c
 #define IEEE802154E_MLME_TIMESLOT_IE_SUBID_SHIFT           1
+#define IEEE802154E_MLME_CHANNELHOPPING_IE_SUBID           0x09
+#define IEEE802154E_MLME_CHANNELHOPPING_IE_SUBID_SHIFT     1
 
 #define IEEE802154E_MLME_IE_GROUPID                        0x01
 #define IEEE802154E_ACK_NACK_TIMECORRECTION_ELEMENTID      0x1E
@@ -121,29 +123,32 @@ typedef enum {
    S_RXPROC                  = 0x19,   // processing received data
 } ieee154e_state_t;
 
+#define  TIMESLOT_TEMPLATE_ID         0x00
+#define  CHANNELHOPPING_TEMPLATE_ID   0x00
+
 // Atomic durations
 // expressed in 32kHz ticks:
 //    - ticks = duration_in_seconds * 32768
 //    - duration_in_seconds = ticks / 32768
 enum ieee154e_atomicdurations_enum {
    // time-slot related
-   TsTxOffset                =  4000,                  //  4000us
-   TsLongGT                  =  1300,                  //  1300us
-   TsTxAckDelay              =  4606,                  //  4606us
-   TsShortGT                 =   500,                  //   500us
-   TsSlotDuration            =  PORT_TsSlotDuration,   // 15000us
+   TsTxOffset                =  131,                  //  4000us
+   TsLongGT                  =   43,                  //  1300us
+   TsTxAckDelay              =  151,                  //  4606us
+   TsShortGT                 =   16,                  //   500us
+   TsSlotDuration            =  PORT_TsSlotDuration,  // 15000us
    // execution speed related
    maxTxDataPrepare          =  PORT_maxTxDataPrepare,
    maxRxAckPrepare           =  PORT_maxRxAckPrepare,
    maxRxDataPrepare          =  PORT_maxRxDataPrepare,
    maxTxAckPrepare           =  PORT_maxTxAckPrepare,
    // radio speed related
-   delayTx                   =  PORT_delayTx,          // between GO signal and SFD
-   delayRx                   =  PORT_delayRx,          // between GO signal and start listening
+   delayTx                   =  PORT_delayTx,         // between GO signal and SFD
+   delayRx                   =  PORT_delayRx,         // between GO signal and start listening
    // radio watchdog
-   wdRadioTx                 =  1000,                  //  1000us (needs to be >delayTx)
-   wdDataDuration            =  5000,                  //  5000us (measured 4280us with max payload)
-   wdAckDuration             =  3000,                  //  3000us (measured 1000us)
+   wdRadioTx                 =   33,                  //  1000us (needs to be >delayTx)
+   wdDataDuration            =  164,                  //  5000us (measured 4280us with max payload)
+   wdAckDuration             =   98,                  //  3000us (measured 1000us)
 };
 
 //shift of bytes in the linkOption bitmap
@@ -206,6 +211,9 @@ typedef struct {
    // channel hopping
    uint8_t                   freq;                    // frequency of the current slot
    uint8_t                   asnOffset;               // offset inside the frame
+   // template ID
+   uint8_t                   tsTemplateId;            // timeslot template id
+   uint8_t                   chTemplateId;            // channel hopping tempalte id
    
    PORT_RADIOTIMER_WIDTH     radioOnInit;             // when within the slot the radio turns on
    PORT_RADIOTIMER_WIDTH     radioOnTics;             // how many tics within the slot the radio is on
